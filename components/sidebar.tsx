@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ClerkLoading, ClerkLoaded, UserButton } from "@clerk/nextjs";
@@ -6,12 +8,14 @@ import { Loader } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { SidebarItem } from "./sidebar-item";
+import { useMounted } from "@/hooks/use-mounted";
 
 type Props = {
   className?: string;
 };
 
 export const Sidebar = ({ className }: Props) => {
+  const mounted = useMounted();
   return (
     <div
       className={cn(
@@ -38,12 +42,18 @@ export const Sidebar = ({ className }: Props) => {
         <SidebarItem label="shop" href="/shop" iconSrc="/shop.svg" />
       </div>
       <div className="p-4">
-        <ClerkLoading>
+        {!mounted ? (
           <Loader className="h-5 w-5 animate-spin text-muted-foreground" />
-        </ClerkLoading>
-        <ClerkLoaded>
-          <UserButton />
-        </ClerkLoaded>
+        ) : (
+          <>
+            <ClerkLoading>
+              <Loader className="h-5 w-5 animate-spin text-muted-foreground" />
+            </ClerkLoading>
+            <ClerkLoaded>
+              <UserButton />
+            </ClerkLoaded>
+          </>
+        )}
       </div>
     </div>
   );

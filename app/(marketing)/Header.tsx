@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   ClerkLoaded,
@@ -9,8 +11,10 @@ import {
 } from "@clerk/nextjs";
 import { LoaderIcon } from "lucide-react";
 import Image from "next/image";
+import { useMounted } from "@/hooks/use-mounted";
 
 export const Header = () => {
+  const mounted = useMounted();
   return (
     <header className="h-20 w-full border-b-2 border-slate-200 px-4">
       <div className="mx-auto flex h-full items-center justify-between lg:max-w-5xl">
@@ -21,25 +25,31 @@ export const Header = () => {
           </h1>
         </div>
 
-        <ClerkLoading>
+        {!mounted ? (
           <LoaderIcon className="size-5 animate-spin text-muted-foreground" />
-        </ClerkLoading>
-        <ClerkLoaded>
-          <Show when="signed-out">
-            <SignInButton
-              mode="modal"
-              fallbackRedirectUrl="/learn"
-              signUpFallbackRedirectUrl="/learn"
-            >
-              <Button size="lg" variant={"ghost"}>
-                Sign In
-              </Button>
-            </SignInButton>
-          </Show>
-          <Show when="signed-in">
-            <UserButton />
-          </Show>
-        </ClerkLoaded>
+        ) : (
+          <>
+            <ClerkLoading>
+              <LoaderIcon className="size-5 animate-spin text-muted-foreground" />
+            </ClerkLoading>
+            <ClerkLoaded>
+              <Show when="signed-out">
+                <SignInButton
+                  mode="modal"
+                  fallbackRedirectUrl="/learn"
+                  signUpFallbackRedirectUrl="/learn"
+                >
+                  <Button size="lg" variant={"ghost"}>
+                    Sign In
+                  </Button>
+                </SignInButton>
+              </Show>
+              <Show when="signed-in">
+                <UserButton />
+              </Show>
+            </ClerkLoaded>
+          </>
+        )}
       </div>
     </header>
   );

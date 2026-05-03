@@ -5,7 +5,7 @@ export const Footer = () => {
   return (
     <footer className="hidden h-20 w-full border-t-2 border-slate-200 p-2 lg:block">
       <div className="mx-auto flex h-full max-w-5xl items-center justify-evenly">
-        <Button size={"lg"} variant={"ghost"} className="w-full">
+        <Button size={"lg"} variant={"ghost"}>
           <Image
             src={"/uz.svg"}
             alt="Uzbek"
@@ -17,7 +17,7 @@ export const Footer = () => {
           Uzbek
         </Button>
 
-        <Button size={"lg"} variant={"ghost"} className="w-full">
+        <Button size={"lg"} variant={"ghost"}>
           <Image
             src={"/es.svg"}
             alt="Spanish"
@@ -29,7 +29,7 @@ export const Footer = () => {
           Spanish
         </Button>
 
-        <Button size={"lg"} variant={"ghost"} className="w-full">
+        <Button size={"lg"} variant={"ghost"}>
           <Image
             src={"/fr.svg"}
             alt="French"
@@ -41,7 +41,7 @@ export const Footer = () => {
           French
         </Button>
 
-        <Button size={"lg"} variant={"ghost"} className="w-full">
+        <Button size={"lg"} variant={"ghost"}>
           <Image
             src={"/it.svg"}
             alt="Italian"
@@ -53,7 +53,7 @@ export const Footer = () => {
           Italian
         </Button>
 
-        <Button size={"lg"} variant={"ghost"} className="w-full">
+        <Button size={"lg"} variant={"ghost"}>
           <Image
             src={"/jp.svg"}
             alt="Japan"

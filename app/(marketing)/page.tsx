@@ -1,4 +1,5 @@
-// import { Button } from "@/components/ui/button";
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   ClerkLoaded,
@@ -10,8 +11,28 @@ import {
 import { LoaderIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useMounted } from "@/hooks/use-mounted";
 
 export default function Home() {
+  const mounted = useMounted();
+
+  if (!mounted) {
+    return (
+      <div className="mx-auto flex w-full max-w-[988px] flex-1 flex-col items-center justify-center gap-2 p-4 lg:flex-row">
+        <div className="relative mb-8 size-[240px] lg:mb-0 lg:size-[424px]">
+          <Image src={"/hero.svg"} fill alt="Hero" />
+        </div>
+        <div className="flex flex-col items-center gap-y-8">
+          <h1 className="max-w[480px] text-center text-xl font-bold text-neutral-600 lg:text-3xl">
+            Learn, practice, and master new languages with Lingo.
+          </h1>
+          <div className="flex flex-col items-center gap-y-3 max-w-[330px] w-full">
+            <LoaderIcon className="size-5 animate-spin text-muted-foreground" />
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="mx-auto flex w-full max-w-[988px] flex-1 flex-col items-center justify-center gap-2 p-4 lg:flex-row">
       <div className="relative mb-8 size-[240px] lg:mb-0 lg:size-[424px]">

@@ -46,7 +46,7 @@ const QuestsPage = async () => {
           </p>
           <ul className="w-full">
             {quests.map((quest) => {
-              const progress = (userProgress.points / quest.value) * 100;
+              const progress = Math.min((userProgress.points / quest.value) * 100, 100);
 
               return (
                 <div
